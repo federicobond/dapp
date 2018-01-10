@@ -5,7 +5,7 @@ set -e -o noclobber
 solc_version=$(solc --version)
 solc_version=$(<<<"$solc_version" grep ^Version:)
 solc_version=${solc_version#* }
-solc_version=${solc_version%%+*}
+solc_version=${solc_version%%[+-]*}
 
 create() { [[ -e $1 ]] || { cat >"$1"; (set -x; git add "$1"); }; }
 insert() {
